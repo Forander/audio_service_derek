@@ -289,7 +289,8 @@ class PlaybackState {
         updateTime: updateTime,
         errorCode: errorCode,
         errorMessage: errorMessage,
-        repeatMode: AudioServiceRepeatModeMessage.values[repeatMode.index],
+        repeatMode: AudioServiceRepeatModeMessage.none,
+        //values[repeatMode.index],
         shuffleMode: AudioServiceShuffleModeMessage.values[shuffleMode.index],
         captioningEnabled: captioningEnabled,
         queueIndex: queueIndex,
@@ -1733,6 +1734,7 @@ abstract class BackgroundAudioTask {
   Future<void> onClose() => onStop();
 
   Future<void> _skip(int offset) async {
+    print('next pressed');
     final mediaItem = _handler.mediaItem.nvalue;
     if (mediaItem == null) return;
     final queue = _handler.queue.nvalue ?? <MediaItem>[];
